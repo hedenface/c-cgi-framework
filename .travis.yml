@@ -112,7 +112,6 @@ matrix:
             - clang-5.0
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
-
     - os: linux
       dist: trusty
       addons:
@@ -132,6 +131,101 @@ matrix:
             - clang-6.0
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-7.0
+            - ubuntu-toolchain-r-test
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+            - check
+            - libsubunit-dev
+            - clang-7.0
+      env:
+        - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-8.0
+            - ubuntu-toolchain-r-test
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+            - check
+            - libsubunit-dev
+            - clang-8.0
+      env:
+        - MATRIX_EVAL="CC=clang-8.0 && CXX=clang++-8.0"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-9.0
+            - ubuntu-toolchain-r-test
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+            - check
+            - libsubunit-dev
+            - clang-9.0
+      env:
+        - MATRIX_EVAL="CC=clang-9.0 && CXX=clang++-9.0"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-10.0
+            - ubuntu-toolchain-r-test
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+            - check
+            - libsubunit-dev
+            - clang-10.0
+      env:
+        - MATRIX_EVAL="CC=clang-10.0 && CXX=clang++-10.0"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-11.0
+            - ubuntu-toolchain-r-test
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+            - check
+            - libsubunit-dev
+            - clang-11.0
+      env:
+        - MATRIX_EVAL="CC=clang-11.0 && CXX=clang++-11.0"
 
 before_install:
   - eval "${MATRIX_EVAL}"
