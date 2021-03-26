@@ -5,10 +5,10 @@
 
 #include "lib.h"
 
-free_ptr_node * ptr_node_head;
+free_ptr_node * ptr_node_head = NULL;
 
-char ** request_vars;
-int request_var_count;
+char ** request_vars = NULL;
+int request_var_count = 0;
 
 void add_ptr_to_free_list(void * ptr)
 {
@@ -129,19 +129,16 @@ void get_request_vars()
     char * str = getenv("QUERY_STRING");
     int i = 0;
 
-    request_var_count = 0;
-
     if (str == NULL) {
         return;
     }
 
-    query = strdup(str);
-    str = query;
-
     request_var_count = 1;
 
-    while (*str++) {
-        if (*str == '&') {
+    query = strdup(str);
+    str = query;
+    while (*str) {
+        if (*str++ == '&') {
             request_var_count++;
         }
     }
@@ -178,6 +175,7 @@ char * get_request_var(char * lookup_key)
     char * value = NULL;
     char * token = NULL;
     int i = 0;
+    int found_key = FALSE;
 
     if (request_var_count == 0) {
         return NULL;
@@ -185,17 +183,31 @@ char * get_request_var(char * lookup_key)
 
     for (; i < request_var_count; i++) {
         key = strtok(request_vars[i], "=");
+
+        if (key == NULL) {
+            return NULL;
+        }
+
         value = strtok(NULL, "=");
 
         if (!strcmp(lookup_key, key)) {
             if (value == NULL) {
                 value = key;
             }
+            found_key = TRUE;
             break;
         }
     }
 
-    token = strdup(value);
-    add_ptr_to_free_list(token);
+    if (found_key == TRUE) {
+        token = strdup(value);
+        add_ptr_to_free_list(token);
+    }
+
     return token;
+}
+
+void print_http_headers()
+{
+    printf("%s\r\n\r\n", "Content-type: text/html; charset=utf-8");
 }

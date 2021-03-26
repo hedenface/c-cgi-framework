@@ -4,3 +4,9 @@ CINCLUDE=-I../include/
 
 cgis:
 	echo cgis
+
+example: example.c
+	$(CC) $(CINCLUDE) $(CFLAGS) -o example.cgi ../lib/lib.o $<
+
+install-example:
+	sudo cp example.cgi /usr/lib/cgi-bin/
