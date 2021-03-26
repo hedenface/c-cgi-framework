@@ -5,6 +5,11 @@
 
 #include "lib.h"
 
+free_ptr_node * ptr_node_head;
+
+char ** request_vars;
+int request_var_count;
+
 void add_ptr_to_free_list(void * ptr)
 {
     free_ptr_node * ptr_node_tmp = NULL;
@@ -118,43 +123,68 @@ char * _element(char * tag, int closing_tag, int num_args, ...)
     return html;
 }
 
-char * get_request_var(char * lookup_key)
+void get_request_vars()
 {
     char * query = NULL;
+    char * str = getenv("QUERY_STRING");
+    int i = 0;
+
+    request_var_count = 0;
+
+    if (str == NULL) {
+        return;
+    }
+
+    query = strdup(str);
+    str = query;
+
+    request_var_count = 1;
+
+    while (*str++) {
+        if (*str == '&') {
+            request_var_count++;
+        }
+    }
+
+    request_vars = calloc(request_var_count, sizeof(char *));
+
+    str = strtok(query, "&");
+    while (str != NULL) {
+        request_vars[i++] = strdup(str);
+        str = strtok(NULL, "&");
+    }
+
+    free(query);
+}
+
+void free_request_vars()
+{
+    int i = 0;
+
+    if (request_vars == NULL) {
+        return;
+    }
+
+    for (; i < request_var_count; i++) {
+        free(request_vars[i]);
+    }
+
+    free(request_vars);
+}
+
+char * get_request_var(char * lookup_key)
+{
     char * key = NULL;
     char * value = NULL;
     char * token = NULL;
     int i = 0;
-    int var_count = 1;
-    char ** vars = NULL;
 
-    token = getenv("QUERY_STRING");
-
-    if (token == NULL) {
+    if (request_var_count == 0) {
         return NULL;
     }
 
-    query = strdup(token);
-    token = query;
-
-    while (*token++) {
-        if (*token == '&') {
-            var_count++;
-        }
-    }
-    token = NULL;
-
-    vars = calloc(var_count, sizeof(char *));
-
-    token = strtok(query, "&");
-    while (token != NULL) {
-        vars[i++] = strdup(token);
-        token = strtok(NULL, "&");
-    }
-
-
-    for (i = 0; i < var_count; i++) {
-        key = strtok(vars[i], "=");
+    for (; i < request_var_count; i++) {
+        key = strtok(request_vars[i], "=");
         value = strtok(NULL, "=");
 
         if (!strcmp(lookup_key, key)) {
@@ -167,12 +197,5 @@ char * get_request_var(char * lookup_key)
 
     token = strdup(value);
     add_ptr_to_free_list(token);
-
-    for (i = 0; i < var_count; i++) {
-        free(vars[i]);
-    }
-    free(vars);
-    free(query);
-
     return token;
 }

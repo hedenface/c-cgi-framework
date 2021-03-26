@@ -15,11 +15,11 @@ typedef struct free_ptr_node_t {
     struct free_ptr_node_t * next;
 } free_ptr_node;
 
-free_ptr_node * ptr_node_head;
-
 void add_ptr_to_free_list(void * ptr);
 void free_ptrs();
 char * _element(char * tag, int closing_tag, int num_args, ...);
+void get_request_vars();
+void free_request_vars();
 char * get_request_var(char * lookup_key);
 
 #define NUM_ARGS(...) (sizeof((char *[]){__VA_ARGS__})/sizeof(char *))
