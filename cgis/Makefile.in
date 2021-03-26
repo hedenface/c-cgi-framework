@@ -1,0 +1,6 @@
+CC=@CC@
+CFLAGS=@CFLAGS@
+CINCLUDE=-I../include/
+
+cgis:
+	echo cgis

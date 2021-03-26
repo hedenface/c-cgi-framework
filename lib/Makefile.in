@@ -1,0 +1,6 @@
+CC=@CC@
+CFLAGS=@CFLAGS@
+CINCLUDE=-I../include/
+
+lib:
+	$(CC) $(CINCLUDE) $(CFLAGS) -c -o lib.o lib.c
