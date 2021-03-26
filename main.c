@@ -34,6 +34,49 @@ free_ptr_node * ptr_node_head;
 #define body(...) element_with_content("body", __VA_ARGS__)
 #define form(...) element_with_content("form", __VA_ARGS__)
 #define label(...) element_with_content("label", __VA_ARGS__)
+#define input(...) element_without_content("input", __VA_ARGS__)
+#define textarea(...) element_with_content("textarea", __VA_ARGS__)
+
+#define h1(...) element_with_content("h1", __VA_ARGS__)
+#define h2(...) element_with_content("h2", __VA_ARGS__)
+#define h3(...) element_with_content("h3", __VA_ARGS__)
+#define h4(...) element_with_content("h4", __VA_ARGS__)
+#define h5(...) element_with_content("h5", __VA_ARGS__)
+#define h6(...) element_with_content("h6", __VA_ARGS__)
+
+void add_ptr_to_free_list(void * ptr)
+{
+    free_ptr_node * ptr_node_tmp = NULL;
+
+    if (ptr == NULL) {
+        return;
+    }
+
+    ptr_node_tmp = malloc(sizeof(* ptr_node_tmp));
+    ptr_node_tmp->ptr = ptr;
+    ptr_node_tmp->next = NULL;
+
+    if (ptr_node_head == NULL) {
+        ptr_node_head = ptr_node_tmp;
+    }
+    else {
+        ptr_node_tmp->next = ptr_node_head;
+        ptr_node_head = ptr_node_tmp;
+    }
+}
+
+void free_ptrs()
+{
+    free_ptr_node * ptr_node_next = ptr_node_head;
+    free_ptr_node * ptr_node_tmp = NULL;
+
+    while (ptr_node_next != NULL) {
+        free(ptr_node_next->ptr);
+        ptr_node_tmp = ptr_node_next;
+        ptr_node_next = ptr_node_next->next;
+        free(ptr_node_tmp);
+    }
+}
 
 char * _element(char * tag, int closing_tag, int num_args, ...)
 {
@@ -47,7 +90,6 @@ char * _element(char * tag, int closing_tag, int num_args, ...)
     size_t inner_html_new_len = 0;
     char * html = NULL;
     size_t html_len = 0;
-    free_ptr_node * ptr_node_tmp = NULL;
     va_list ap;
 
     va_start(ap, num_args);
@@ -110,37 +152,14 @@ char * _element(char * tag, int closing_tag, int num_args, ...)
         free(attr);
     }
 
-    ptr_node_tmp = malloc(sizeof(* ptr_node_tmp));
-    ptr_node_tmp->ptr = html;
-    ptr_node_tmp->next = NULL;
-
-    if (ptr_node_head == NULL) {
-        ptr_node_head = ptr_node_tmp;
-    }
-    else {
-        ptr_node_tmp->next = ptr_node_head;
-        ptr_node_head = ptr_node_tmp;
-    }
+    add_ptr_to_free_list(html);
 
     return html;
 }
 
-void free_ptrs()
-{
-    free_ptr_node * ptr_node_next = ptr_node_head;
-    free_ptr_node * ptr_node_tmp = NULL;
-
-    while (ptr_node_next != NULL) {
-        free(ptr_node_next->ptr);
-        ptr_node_tmp = ptr_node_next;
-        ptr_node_next = ptr_node_next->next;
-        free(ptr_node_tmp);
-    }
-}
-
 int main(int argc, char const *argv[])
 {
-    html(head(title("test")), "\n", body("dis is the body!"));
+    html(head(title("test")), "\n", body(form("attr", "test=\"pooop\"", input("attr", "type=\"text\""))));
     free_ptrs();
     return 0;
 }
