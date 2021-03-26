@@ -2,6 +2,8 @@
 
 > A lightweight and basic framework for building and processing CGI forms in C
 
+[![Build Status](https://travis-ci.org/hedenface/c-cgi-framework.svg?branch=main)](https://travis-ci.org/hedenface/c-cgi-framework)
+
 ## Who Would Write Something Like This?
 
 Sadists.
