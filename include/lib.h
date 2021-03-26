@@ -21,6 +21,7 @@ char * _element(char * tag, int closing_tag, int num_args, ...);
 void get_request_vars();
 void free_request_vars();
 char * get_request_var(char * lookup_key);
+void print_http_headers();
 
 #define NUM_ARGS(...) (sizeof((char *[]){__VA_ARGS__})/sizeof(char *))
 #define element(tag, closing_tag, ...) _element(tag, closing_tag, NUM_ARGS(__VA_ARGS__), __VA_ARGS__)
@@ -28,7 +29,7 @@ char * get_request_var(char * lookup_key);
 #define element_with_content(tag, ...) element(tag, TRUE, __VA_ARGS__)
 #define element_without_content(tag, ...) element(tag, FALSE, __VA_ARGS__)
 
-#define html(...) printf("<!doctype html>\n\n%s\n", _html(__VA_ARGS__))
+#define html(...) printf("<!DOCTYPE HTML>\n\n%s\n", _html(__VA_ARGS__))
 #define _html(...) element_with_content("html", __VA_ARGS__)
 
 #define head(...) element_with_content("head", __VA_ARGS__)
@@ -39,6 +40,9 @@ char * get_request_var(char * lookup_key);
 #define label(...) element_with_content("label", __VA_ARGS__)
 #define input(...) element_without_content("input", __VA_ARGS__)
 #define textarea(...) element_with_content("textarea", __VA_ARGS__)
+
+#define div(...) element_with_content("div", __VA_ARGS__)
+#define span(...) element_with_content("span", __VA_ARGS__)
 
 #define h1(...) element_with_content("h1", __VA_ARGS__)
 #define h2(...) element_with_content("h2", __VA_ARGS__)
