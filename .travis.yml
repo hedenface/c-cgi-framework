@@ -8,6 +8,8 @@ matrix:
       dist: trusty
       addons:
         apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
             - apache2
             - build-essential
@@ -21,6 +23,8 @@ matrix:
       dist: trusty
       addons:
         apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
             - apache2
             - build-essential
@@ -34,6 +38,8 @@ matrix:
       dist: trusty
       addons:
         apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
             - apache2
             - build-essential
@@ -47,6 +53,8 @@ matrix:
       dist: trusty
       addons:
         apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
             - apache2
             - build-essential
@@ -60,6 +68,8 @@ matrix:
       dist: trusty
       addons:
         apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
             - apache2
             - build-essential
@@ -73,6 +83,8 @@ matrix:
       dist: trusty
       addons:
         apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
             - apache2
             - build-essential
