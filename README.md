@@ -4,6 +4,20 @@
 
 [![Build Status](https://travis-ci.org/hedenface/c-cgi-framework.svg?branch=main)](https://travis-ci.org/hedenface/c-cgi-framework)
 
+## See It In Action
+
+```
+git clone https://github.com/hedenface/c-cgi-framework
+cd c-cgi-framework
+./configure
+make lib
+cd cgis
+make example
+sudo make install-example
+```
+
+Now navigate to http://localhost/cgi-bin/example.cgi. Hooray!
+
 ## Who Would Write Something Like This?
 
 Sadists.
