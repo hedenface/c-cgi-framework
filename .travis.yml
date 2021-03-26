@@ -16,7 +16,72 @@ matrix:
             - lcov
             - valgrind
       env:
-        - MATRIX_EVAL="CC=gcc && CXX=g++"
+        - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+      env:
+        - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+      env:
+        - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10"
 
 before_install:
   - eval "${MATRIX_EVAL}"
