@@ -2,6 +2,8 @@ CC=@CC@
 CFLAGS=@CFLAGS@
 CINCLUDE=-I../include/
 
+CGIINSTALLDIR=@cgidir@
+
 cgis:
 	echo cgis
 
