@@ -17,6 +17,9 @@ matrix:
             - gperf
             - lcov
             - valgrind
+            - check
+            - libsubunit-dev
+            - g++-5
       env:
         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
     - os: linux
@@ -32,6 +35,9 @@ matrix:
             - gperf
             - lcov
             - valgrind
+            - check
+            - libsubunit-dev
+            - g++-6
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
     - os: linux
@@ -47,6 +53,9 @@ matrix:
             - gperf
             - lcov
             - valgrind
+            - check
+            - libsubunit-dev
+            - g++-7
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - os: linux
@@ -62,6 +71,9 @@ matrix:
             - gperf
             - lcov
             - valgrind
+            - check
+            - libsubunit-dev
+            - g++-8
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
     - os: linux
@@ -77,6 +89,9 @@ matrix:
             - gperf
             - lcov
             - valgrind
+            - check
+            - libsubunit-dev
+            - g++-9
       env:
         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
     - os: linux
@@ -92,6 +107,9 @@ matrix:
             - gperf
             - lcov
             - valgrind
+            - check
+            - libsubunit-dev
+            - g++-10
       env:
         - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10"
 
