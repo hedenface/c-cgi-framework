@@ -1,9 +1,10 @@
 CC=@CC@
 CFLAGS=@CFLAGS@
 CINCLUDE=-I../include/
+TESTLIBS=-lcheck -lsubunit -lm -lrt -lpthread
 
 test: test.c
-	$(CC) $(CINCLUDE) $(CFLAGS) -o $@ ../lib/lib.o $<
+	$(CC) $(CINCLUDE) $(CFLAGS) -o $@ ../lib/lib.o $< $(TESTLIBS)
 
 memtest: test
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./test

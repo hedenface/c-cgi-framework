@@ -94,24 +94,6 @@ matrix:
             - g++-9
       env:
         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
-    - os: linux
-      dist: trusty
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - apache2
-            - build-essential
-            - gcovr
-            - gperf
-            - lcov
-            - valgrind
-            - check
-            - libsubunit-dev
-            - g++-10
-      env:
-        - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10"
 
 before_install:
   - eval "${MATRIX_EVAL}"
