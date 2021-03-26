@@ -18,6 +18,25 @@ AC_ARG_ENABLE(
     [CFLAGS="${CFLAGS} -O0 -ggdb3 -g -fprofile-arcs -ftest-coverage"]
 )
 
+AC_ARG_WITH(
+    [cgidir],
+    AC_HELP_STRING([--with-cgidir=DIR],[where to install cgis (defaults to /usr/lib/cgi-bin, then /var/www/cgi-bin)]),
+    [cgidir=$withval]
+)
+
+if test "x$cgidir" = "x"; then
+    cgidir="/usr/lib/cgi-bin"
+    if test ! -d $cgidir; then
+        cgidir="/var/www/cgi-bin"
+        if test ! -d $cgidir; then
+            echo "Please specify CGI installation path (--with-cgidir)!"
+            exit 1
+        fi
+    fi
+fi
+
+AC_SUBST([cgidir])
+
 AC_OUTPUT([
     Makefile
     lib/Makefile
