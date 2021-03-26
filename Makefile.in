@@ -1,0 +1,49 @@
+CC=@CC@
+CFLAGS=@CFLAGS@
+
+LIBSOURCE=include/lib.h lib/lib.c
+TESTSOURCE=test/test.c
+CGISOURCE=cgis/*.c
+
+.PHONY: lib test cgis
+
+lib: $(LIBSOURCE)
+	cd lib/ && $(MAKE) $@
+
+test: $(LIBSOURCE) $(TESTSOURCE) 
+	cd test/ && $(MAKE) $@
+
+memtest: $(LIBSOURCE) $(TESTSOURCE)
+	cd test/ && $(MAKE) $@
+
+cgis: $(LIBSOURCE) $(CGISOURCE)
+	cd cgis/ && $(MAKE) $@
+
+install-cgis:
+
+coverage: test
+	@if which lcov &>/dev/null; then \
+		lcov -c -d . -o test/coverage.info-file; \
+		genhtml test/coverage.info-file -o test/coverage/; \
+		echo "Your coverage report is in test/coverage/index.html"; \
+	else \
+		echo "You must install lcov first!"; \
+	fi
+
+report: coverage
+	@if which gcovr &>/dev/null; then \
+		gcovr --exclude="test/test.c" -r . ; \
+	else \
+		echo "You must install gcovr first!"; \
+	fi
+
+clean:
+	rm -f lib/lib.o test/test cgis/*.cgi
+
+distclean: clean
+	rm -rf autom4te.cache
+	rm -f Makefile */Makefile
+	rm -f autoscan.log config.log config.status
+	rm -rf test/coverage test/coverage.info-file
+	rm -f */*.gcda */*.gcno
+	autoconf

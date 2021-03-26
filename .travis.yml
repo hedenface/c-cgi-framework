@@ -1,0 +1,27 @@
+language: c
+
+sudo: true
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          packages:
+            - apache2
+            - build-essential
+            - gcovr
+            - gperf
+            - lcov
+            - valgrind
+      env:
+        - MATRIX_EVAL="CC=gcc && CXX=g++"
+
+before_install:
+  - eval "${MATRIX_EVAL}"
+
+script:
+  - ./configure --enable-testing
+  - make lib && make test && make memtest
+  - make report

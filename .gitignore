@@ -1,0 +1,12 @@
+config.log
+config.status
+autoscan.log
+autom4te.cache/
+*.gcda
+*.gcno
+Makefile
+test/test
+lib/lib.o
+cgis/*.cgi
+test/coverage
+test/coverage.info-file

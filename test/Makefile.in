@@ -1,0 +1,9 @@
+CC=@CC@
+CFLAGS=@CFLAGS@
+CINCLUDE=-I../include/
+
+test: test.c
+	$(CC) $(CINCLUDE) $(CFLAGS) -o $@ ../lib/lib.o $<
+
+memtest: test
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./test
