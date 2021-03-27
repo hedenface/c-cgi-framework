@@ -76,13 +76,13 @@ Suite * query_string_suite(void)
 
 START_TEST (add_null_ptr_to_ptr_list)
 {
-    //add_ptr_to_free_list(NULL);
+    add_ptr_to_free_list(NULL);
 }
 END_TEST
 
 START_TEST (free_ptr_list)
 {
-    //free_ptrs();
+    free_ptrs();
 }
 END_TEST
 
