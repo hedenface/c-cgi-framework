@@ -149,7 +149,7 @@ matrix:
             - libsubunit-dev
             - clang-7.0
       env:
-        - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
+        - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
     - os: linux
       dist: trusty
       addons:
@@ -168,7 +168,7 @@ matrix:
             - libsubunit-dev
             - clang-8.0
       env:
-        - MATRIX_EVAL="CC=clang-8.0 && CXX=clang++-8.0"
+        - MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
 
 before_install:
   - eval "${MATRIX_EVAL}"
