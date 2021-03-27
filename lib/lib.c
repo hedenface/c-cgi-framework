@@ -91,7 +91,7 @@ char * _element(char * tag, int closing_tag, int num_args, ...)
 
             inner_html_new_len = inner_html_len + strlen(arg) + 1;
             inner_html = realloc(inner_html, inner_html_new_len);
-            snprintf(inner_html + inner_html_len - 1, inner_html_new_len - inner_html_len + 1, "%s\n", arg);
+            snprintf(inner_html + inner_html_len - 1, inner_html_new_len - inner_html_len + 1, "%s", arg);
             inner_html_len = inner_html_new_len;
         }
     }
@@ -186,11 +186,6 @@ char * get_request_var(char * lookup_key)
 
     for (; i < request_var_count; i++) {
         key = strtok(request_vars[i], "=");
-
-        if (key == NULL) {
-            return NULL;
-        }
-
         value = strtok(NULL, "=");
 
         if (!strcmp(lookup_key, key)) {

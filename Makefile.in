@@ -30,7 +30,7 @@ coverage: test
 		echo "You must install lcov first!"; \
 	fi
 
-report: coverage
+report: lib test memtest coverage
 	@if which gcovr &>/dev/null; then \
 		gcovr --exclude="test/test.c" -r . ; \
 	else \
