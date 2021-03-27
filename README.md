@@ -20,11 +20,11 @@ sudo make install-example
 
 Now navigate to http://localhost/cgi-bin/example.cgi. If you're lucky, you should see a super cool (and modern) bootstrap form:
 
-[![Example Form](https://github.com/hedenface/c-cgi-framework/blob/main/media/example.png)]
+![Example Form](https://github.com/hedenface/c-cgi-framework/blob/main/media/example.png)
 
 Now, take a moment to read the source code to see what is expected of you. ***JUST KIDDING***. Type `text1` in the first text box, and `text2` in the second text box, and then submit the form. You should now be greeted with something like the following:
 
-[![Example Submissed Form](https://github.com/hedenface/c-cgi-framework/blob/main/media/example_submissed.png)]
+![Example Submissed Form](https://github.com/hedenface/c-cgi-framework/blob/main/media/example_submissed.png)
 
 ## Details and Boring API Stuff
 
