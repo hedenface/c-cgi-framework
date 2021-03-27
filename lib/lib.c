@@ -37,7 +37,10 @@ void free_ptrs()
     free_ptr_node * ptr_node_tmp = NULL;
 
     while (ptr_node_next != NULL) {
-        free(ptr_node_next->ptr);
+        if (ptr_node_next->ptr != NULL) {
+            free(ptr_node_next->ptr);
+            ptr_node_next->ptr = NULL;
+        }
         ptr_node_tmp = ptr_node_next;
         ptr_node_next = ptr_node_next->next;
         free(ptr_node_tmp);

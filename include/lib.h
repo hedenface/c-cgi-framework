@@ -34,6 +34,7 @@ void print_http_headers();
 
 #define head(...) element_with_content("head", __VA_ARGS__)
 #define title(...) element_with_content("title", __VA_ARGS__)
+#define link(...) element_without_content("link", __VA_ARGS__)
 
 #define body(...) element_with_content("body", __VA_ARGS__)
 #define form(...) element_with_content("form", __VA_ARGS__)

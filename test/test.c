@@ -74,25 +74,53 @@ Suite * query_string_suite(void)
     return s;
 }
 
+START_TEST (add_null_ptr_to_ptr_list)
+{
+    //add_ptr_to_free_list(NULL);
+}
+END_TEST
+
+START_TEST (free_ptr_list)
+{
+    //free_ptrs();
+}
+END_TEST
+
+Suite * ptr_list_suite(void)
+{
+    Suite * s = NULL;
+    TCase * t = NULL;
+
+    s = suite_create("c-cgi-framework ptr_list tests");
+    t = tcase_create("");
+
+    tcase_add_test(t, add_null_ptr_to_ptr_list);
+    tcase_add_test(t, free_ptr_list);
+
+    suite_add_tcase(s, t);
+
+    return s;
+}
+
 int main()
 {
     int failed = 0;
     int i = 0;
-    Suite * query_string = query_string_suite();
-    SRunner * runner[1] = { NULL };
+    Suite * query_string_s = query_string_suite();
+    Suite * ptr_list_s = ptr_list_suite();
+    SRunner * runner[2] = { NULL };
 
-    runner[0] = srunner_create(query_string);
+    runner[0] = srunner_create(query_string_s);
+    runner[1] = srunner_create(ptr_list_s);
 
-    //for (i = 0; i < 1; i++) {
-        i = 0;
+    for (i = 0; i < 2; i++) {
         srunner_set_fork_status(runner[i], CK_NOFORK);
         srunner_run_all(runner[i], CK_VERBOSE);
         failed += srunner_ntests_failed(runner[i]);
         srunner_free(runner[i]);
-    //}
+    }
 
     printf("\n\n\nFailures: %d\n\n", failed);
 
-    free_ptrs();
     return failed;
 }
