@@ -32,7 +32,7 @@ The library (`lib/lib.c` and corresponding `include/lib.h`) is broken into two p
 
 ### HTML Building
 
-The full list of available elements can be found in [include/lib.h](https://github.com/hedenface/c-cgi-framework/blob/main/include.lib.h). These are all essentially wrappers to the `_element()` function. There are 2 kinds of HTML tags:
+The full list of available elements can be found in [include/lib.h](https://github.com/hedenface/c-cgi-framework/blob/main/include/lib.h). These are all essentially wrappers to the `_element()` function. There are 2 kinds of HTML tags:
 
 1. The kind that has a closing tag
 1. The kind that doesn't have a closing tag
