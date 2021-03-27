@@ -34,10 +34,10 @@ int main(void)
     }
 
     char * success_div = strdup("");
+    add_ptr_to_free_list(success_div);
 
     if (text_input_1_value != NULL && text_input_2_value != NULL
         && !strcmp(text_input_1_value, "text1") && !strcmp(text_input_2_value, "text2")) {
-        free(success_div);
         success_div = div(
                         "attr",
                             "class=\"alert alert-primary\"",
